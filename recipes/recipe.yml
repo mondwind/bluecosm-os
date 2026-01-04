@@ -28,7 +28,7 @@ modules:
         - atim/starship
         - che/zed
         - kylegospo/system76-scheduler
-        - bazzite-org/bazzite-multilib
+        - kylegospo/bazzite-multilib
     install:
       packages:
         # Everything gaming
@@ -50,9 +50,9 @@ modules:
         # Intel graphics support
         - intel-gpu-tools
         - libva-utils
-
+        - libva-intel-media-driver
         # multimedia
-
+        - ffmpeg
         # Virtualization support for Windows guests
         - edk2-ovmf
         - swtpm
@@ -72,9 +72,7 @@ modules:
       - steam # specialized akmods module to avoid 32bit codec issues
       - steam-devices
       # 32 bit packages for steam
-      - libva.i686
-      - intel-media-driver.i686
-      - mesa-vulkan-drivers.i686
+
     replace:
       - from-repo: rpmfusion-free
         packages:
@@ -96,8 +94,11 @@ modules:
   - type: systemd
     system:
       enabled:
+        # virt service split up into daemons
         - libvirtd.socket
+        - virtqemud.socket
         - virtnetworkd.socket
+
         - com.system76.Scheduler.service
         - tailscaled.service
 
