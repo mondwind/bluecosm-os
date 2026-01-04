@@ -27,8 +27,7 @@ modules:
         - ryanabx/cosmic-epoch # Cosmic Desktop packages
         - atim/starship
         - che/zed
-        - jkies/system76-scheduler
-        - lush/looking-glass-kvmfr
+        - kylegospo/system76-scheduler
     install:
       packages:
         - cosmic-desktop
@@ -59,10 +58,9 @@ modules:
         # Virtualization support for Windows guests
         - edk2-ovmf
         - swtpm
-        - kvmfr
 
         # LLM requirements
-        - level-zero-devel
+        - intel-level-zero
         - intel-compute-runtime
 
         # Zed editor (RPM to avoid flatpak limitations)
@@ -74,8 +72,13 @@ modules:
     install:
       - steam # specialized akmods module to avoid 32bit codec issues
       - steam-devices
+  - type: akmods
+    install:
+      - kvmfr
+
   - type: brew
     nofile-limits: true
+
   - type: systemd
     system:
       enabled:
