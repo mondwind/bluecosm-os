@@ -21,7 +21,7 @@ modules:
     repos:
       cleanup: true # clean up added repos after module is done
       nonfree: rpmfusion # enable RPM Fusion repositories (required for Steam, etc.)
-      add:
+      files:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
       copr:
         - ryanabx/cosmic-epoch # Cosmic Desktop packages
