@@ -40,6 +40,7 @@ modules:
         - atim/starship
         - che/zed
         - kylegospo/system76-scheduler
+        - che/nerd-fonts
     install:
       packages:
         # Everything gaming
@@ -49,7 +50,7 @@ modules:
 
         # Desktop environment
         - cosmic-desktop
-        - jetbrains-mono-fonts-all
+        - jetbrainsmono-nerd-fonts
 
         # Devtools
         - ptyxis
