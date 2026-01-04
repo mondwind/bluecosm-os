@@ -31,8 +31,6 @@ modules:
         - bazzite-org/bazzite-multilib
     install:
       packages:
-        - cosmic-desktop
-
         # Everything gaming
         - gamescope
         - mangohud
@@ -69,6 +67,12 @@ modules:
     group-install:
       packages:
         - virtualization
+  - type: dnf
+    group-install:
+      with-optional: true
+      packages:
+        - cosmic-desktop-environment
+
   - type: rpm-ostree
     install:
       - steam # specialized akmods module to avoid 32bit codec issues
@@ -77,7 +81,7 @@ modules:
       - libva.i686
       - intel-media-driver.i686
       - mesa-vulkan-drivers.i686
-      
+
   - type: akmods
     install:
       - kvmfr
