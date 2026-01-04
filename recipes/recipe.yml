@@ -36,6 +36,7 @@ modules:
         - gamescope
         - mangohud
         - system76-scheduler
+        - libva.i686 # To ensure that Steam is able to run in the RPM but there is still a chance that the 64 and 32 bit versions are not version matched
 
         # Devtools
         - ptyxis
