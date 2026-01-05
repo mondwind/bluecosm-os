@@ -68,6 +68,7 @@ modules:
         # Virtualization support for Windows guests
         - edk2-ovmf
         - swtpm
+        - virt-manager
 
         # LLM requirements
         - intel-level-zero
