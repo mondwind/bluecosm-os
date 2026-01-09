@@ -17,7 +17,7 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  - type: dnf
+  - type: dnf # steam installation
     repos:
       files:
         - https://negativo17.org/repos/fedora-steam.repo
@@ -29,7 +29,7 @@ modules:
       install-weak-deps: false
       allow-erasing: true
 
-  - type: dnf
+  - type: dnf # general packages
     repos:
       cleanup: false # necessary for RPM stage not to fail
       nonfree: rpmfusion # enable RPM Fusion repositories (required for Steam, etc.)
@@ -40,19 +40,17 @@ modules:
         - atim/starship
         - che/zed
         - kylegospo/system76-scheduler
-        - che/nerd-fonts
     install:
       packages:
         # Everything gaming
         - gamescope
         - mangohud
         - system76-scheduler
+        - gamemode
 
         # Desktop environment
         - cosmic-desktop
-        - jetbrains-mono-fonts-all
-        - nerd-fonts
-
+        - vivaldi
         # Devtools
         - ptyxis
         - tailscale
@@ -79,6 +77,9 @@ modules:
     group-install:
       packages:
         - virtualization
+    remove:
+      - firefox
+      - firefox-langpacks
 
   - type: brew
     nofile-limits: true
@@ -93,6 +94,14 @@ modules:
 
         - com.system76.Scheduler.service
         - tailscaled.service
+  - type: fonts
+    nerd-fonts:
+      - jetbrains-mono-fonts-all
+      - nerd-fonts
+    google-fonts:
+      - Roboto
+    microsoft-fonts:
+      - Segoe UI
 
   - type: default-flatpaks
     configurations:
@@ -100,7 +109,7 @@ modules:
         scope: system
         # If no repo information is specified, Flathub will be used by default
         install: # system flatpaks we want all users to have and not remove
-          - com.vivaldi.Vivaldi
+
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
