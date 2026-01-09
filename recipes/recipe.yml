@@ -99,13 +99,13 @@ modules:
         - com.system76.Scheduler.service
         - tailscaled.service
   - type: fonts
-      nerd-fonts:
-        - jetbrains-mono-fonts-all
-        - nerd-fonts
-      google-fonts:
-        - Roboto
-      microsoft-fonts:
-        - Segoe UI
+    nerd-fonts:
+      - jetbrains-mono-fonts-all
+      - nerd-fonts
+    google-fonts:
+      - Roboto
+    microsoft-fonts:
+      - Segoe UI
   - type: brew
     nofile-limits: true
     brew-analytics: false
