@@ -53,7 +53,7 @@ modules:
 
         # Desktop environment
         - cosmic-desktop
-        - vivaldi
+        - vivaldi-stable
         # Devtools
         - ptyxis
         - tailscale
