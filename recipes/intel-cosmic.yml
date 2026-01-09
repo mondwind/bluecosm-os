@@ -88,6 +88,13 @@ modules:
       packages:
         - firefox
         - firefox-langpacks
+        - linux-firmware-intel
+        - linux-firmware-broadcom
+        - linux-firmware-mediatek
+        - linux-firmware-mellanox
+        - linux-firmware-nxp
+        - linux-firmware-qlogic
+        - linux-firmware-ti
 
   - type: brew
     nofile-limits: true
