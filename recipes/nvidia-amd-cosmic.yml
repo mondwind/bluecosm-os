@@ -27,7 +27,7 @@ modules:
         - kernel-modules-extra
         - ffmpeg
       install-weak-deps: false
-      allow-erasing: true
+
   - type: akmods
     install:
       - nvidia
