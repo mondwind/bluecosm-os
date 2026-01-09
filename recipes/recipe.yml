@@ -35,6 +35,9 @@ modules:
       nonfree: rpmfusion # enable RPM Fusion repositories (required for Steam, etc.)
       files:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+        - https://repo.vivaldi.com/stable/vivaldi-fedora.repo
+      keys:
+        - https://repo.vivaldi.com/stable/linux_signing_key.pub
       copr:
         - ryanabx/cosmic-epoch # Cosmic Desktop packages
         - atim/starship
@@ -102,6 +105,9 @@ modules:
       - Roboto
     microsoft-fonts:
       - Segoe UI
+  - type: brew
+    nofile-limits: true
+    brew-analytics: false
 
   - type: default-flatpaks
     configurations:
