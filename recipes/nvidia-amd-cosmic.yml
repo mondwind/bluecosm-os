@@ -27,11 +27,7 @@ modules:
         - kernel-modules-extra
         - ffmpeg
       install-weak-deps: false
-
-  - type: akmods
-    install:
-      - nvidia
-    nvidia-driver: nvidia-open
+      allow-erasing: true
 
   - type: dnf # general packages
     repos:
@@ -40,6 +36,7 @@ modules:
       files:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
         - https://repo.vivaldi.com/stable/vivaldi-fedora.repo
+        - https://negativo17.org/repos/fedora-nvidia-580.repo
       keys:
         - https://repo.vivaldi.com/stable/linux_signing_key.pub
       copr:
@@ -93,6 +90,11 @@ modules:
       packages:
         - firefox
         - firefox-langpacks
+
+  - type: akmods
+    install:
+      - nvidia
+    nvidia-driver: nvidia-open
 
   - type: kargs
     kargs:
