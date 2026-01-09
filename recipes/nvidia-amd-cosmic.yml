@@ -29,6 +29,10 @@ modules:
       install-weak-deps: false
       allow-erasing: true
 
+  - type: akmods
+    install: []
+    nvidia-driver: nvidia-open
+
   - type: dnf # general packages including NVIDIA drivers
     repos:
       cleanup: false # necessary for RPM stage not to fail
@@ -36,7 +40,6 @@ modules:
       files:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
         - https://repo.vivaldi.com/stable/vivaldi-fedora.repo
-        - https://negativo17.org/repos/fedora-nvidia-580.repo
       keys:
         - https://repo.vivaldi.com/stable/linux_signing_key.pub
       copr:
@@ -55,13 +58,6 @@ modules:
         # Desktop environment
         - cosmic-desktop
         - vivaldi-stable
-
-        # NVIDIA drivers from negativo17 repo
-        - nvidia-driver
-        - nvidia-driver-libs
-        - nvidia-driver-cuda-libs
-        - nvidia-settings
-        - nvidia-persistenced
 
         # AMD ryzen support
         - amd-ucode-firmware
