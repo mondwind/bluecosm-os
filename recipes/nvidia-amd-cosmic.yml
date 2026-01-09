@@ -12,11 +12,6 @@ image-version: latest
 # module configuration, executed in order
 # you can include multiple instances of the same module
 modules:
-  - type: akmods
-    install:
-      - nvidia
-    nvidia-driver: nvidia-open
-
   - type: files
     files:
       - source: system
@@ -33,6 +28,10 @@ modules:
         - ffmpeg
       install-weak-deps: false
       allow-erasing: true
+  - type: akmods
+    install:
+      - nvidia
+    nvidia-driver: nvidia-open
 
   - type: dnf # general packages
     repos:
