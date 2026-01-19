@@ -128,8 +128,6 @@ modules:
         - com.system76.Scheduler.service
         - tailscaled.service
         - greetd.service
-        - swaylock.service
-        - fuzzel.service
       disabled:
         - NetworkManager-wait-online.service
 
