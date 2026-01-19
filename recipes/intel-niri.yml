@@ -1,0 +1,149 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/<user>/<name>
+name: bluecosm-os
+# description will be included in the image's metadata
+description: This is my personal OS image with the Cosmic Desktop.
+
+# the base image to build on top of (FROM) and the version tag to use
+base-image: ghcr.io/ublue-os/base-main
+image-version: latest
+
+# module configuration, executed in order
+# you can include multiple instances of the same module
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+
+  - type: dnf # steam installation
+    repos:
+      cleanup: true
+      files:
+        - https://negativo17.org/repos/fedora-steam.repo
+    install:
+      packages:
+        - steam
+        - kernel-modules-extra
+        - ffmpeg
+      install-weak-deps: false
+      allow-erasing: true
+
+  - type: dnf # general packages
+    repos:
+      cleanup: false
+      nonfree: rpmfusion # enable RPM Fusion repositories (required for Steam, etc.)
+      files:
+        - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+        - https://repo.vivaldi.com/stable/vivaldi-fedora.repo
+        - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+      keys:
+        - https://repo.vivaldi.com/stable/linux_signing_key.pub
+        - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+      copr:
+        - yuriw/niri
+        - atim/starship
+        - che/zed
+        - kylegospo/system76-scheduler
+    install:
+      packages:
+        # Everything gaming
+        - gamescope
+        - mangohud
+        - system76-scheduler
+        - gamemode
+
+        # Desktop environment
+        - niri
+        - xdg-desktop-portal-gtk
+        - xdg-desktop-portal-gnome
+        - gnome-keyring
+        - greetd
+        - tuigreet
+        - waybar
+        - mako
+        - swaybg
+        - swayidle
+        - swaylock
+        - fuzzel
+        - wl-clipboard
+        - polkit-kde
+        - nautilus
+
+        # Browsers
+        - vivaldi-stable
+        - brave-browser
+        # Devtools
+        - ptyxis
+        - tailscale
+        - micro
+        - starship
+        - zed
+
+        # Intel graphics support
+        - intel-gpu-tools
+        - libva-utils
+        - libva-intel-media-driver
+        # Virtualization support for Windows guests
+        - edk2-ovmf
+        - swtpm
+        - virt-manager
+
+        # LLM requirements
+        - intel-level-zero
+        - intel-compute-runtime
+
+    group-install:
+      packages:
+        - virtualization
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
+        - linux-firmware-intel
+        - linux-firmware-broadcom
+        - linux-firmware-mediatek
+        - linux-firmware-mellanox
+        - linux-firmware-nxp
+        - linux-firmware-qlogic
+        - linux-firmware-ti
+
+  - type: brew
+    nofile-limits: true
+
+  - type: script
+    scripts:
+      - setup-niri-services.sh
+
+  - type: systemd
+    system:
+      enabled:
+        # virt service split up into daemons
+        - libvirtd.socket
+        - virtqemud.socket
+        - virtnetworkd.socket
+        - virtproxyd.socket
+
+        - com.system76.Scheduler.service
+        - tailscaled.service
+        - greetd.service
+        - swaylock.service
+        - fuzzel.service
+      disabled:
+        - NetworkManager-wait-online.service
+
+  - type: brew
+    nofile-limits: true
+    brew-analytics: false
+
+  - type: default-flatpaks
+    configurations:
+      - notify: true # Send notification after install/uninstall is finished (true/false)
+        scope: system
+        # If no repo information is specified, Flathub will be used by default
+        install: # system flatpaks we want all users to have and not remove
+          - com.github.tchx84.Flatseal
+      - scope: user # Also add Flathub user repo, but no user packages
+
+  - type: signing # this sets up the proper policy & signing files for signed images to work fully

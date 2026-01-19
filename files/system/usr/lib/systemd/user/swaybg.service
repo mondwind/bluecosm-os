@@ -1,0 +1,11 @@
+[Unit]
+Description=Swaybg wallpaper daemon
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/swaybg -m fill -i /usr/share/backgrounds/default.png
+Restart=on-failure
+
+[Install]
+WantedBy=niri.service
