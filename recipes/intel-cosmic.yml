@@ -17,109 +17,23 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  - type: dnf # steam installation
-    repos:
-      cleanup: true
-      files:
-        - https://negativo17.org/repos/fedora-steam.repo
-    install:
-      packages:
-        - steam
-        - kernel-modules-extra # might be removable
-      install-weak-deps: false
-      allow-erasing: true
+  - from-file: steam.yml
+  - from-file: common.yml
 
   - type: dnf # general packages
     repos:
       cleanup: true
-      nonfree: rpmfusion # enable RPM Fusion repositories (required for Steam, etc.)
-
-      files:
-        - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
-        - https://repo.vivaldi.com/archive/vivaldi-fedora.repo
-        - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-      keys:
-        - https://repo.vivaldi.com/archive/linux_signing_key.pub
-        - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-      copr:
-        - atim/starship
-        - che/zed
-        - kylegospo/system76-scheduler
     install:
       packages:
-        # Gaming Stack
-        - gamescope
-        - mangohud
-        - system76-scheduler
-        - gamemode
-
-        # Browsers Stack
-        - repo: vivaldi
-          packages:
-            - vivaldi-stable
-        - repo: brave-browser
-          packages:
-            - brave-browser
-        # Dev Stack
-        - ptyxis
-        - tailscale
-        - zed
-        - micro
-        - starship
-        - alacritty
-
         # Intel Stack
         - intel-gpu-tools
         - intel-level-zero
         - intel-compute-runtime
-
-        # Virt Stack
-        - edk2-ovmf
-        - swtpm
-        - virt-manager
-
-    group-install:
-      packages:
-        - virtualization
-    remove:
-      packages:
-        - firefox
-        - firefox-langpacks
-        - linux-firmware-intel
-        - linux-firmware-broadcom
-        - linux-firmware-mediatek
-        - linux-firmware-mellanox
-        - linux-firmware-nxp
-        - linux-firmware-qlogic
-        - linux-firmware-ti
-
-  - type: systemd
-    system:
-      enabled:
-        # virt service split up into daemons
-        - libvirtd.socket
-        - virtqemud.socket
-        - virtnetworkd.socket
-        - virtproxyd.socket
-
-        - com.system76.Scheduler.service
-        - tailscaled.service
-      disabled:
-        - NetworkManager-wait-online.service
 
   - type: brew
     nofile-limits: true
     brew-analytics: false
     auto-update: true
     auto-upgrade: true
-
-  - type: default-flatpaks
-    configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
-        scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
-          - com.github.tchx84.Flatseal
-      - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
