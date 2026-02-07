@@ -54,6 +54,7 @@ modules:
           - linux-firmware-nxp
           - linux-firmware-qlogic
           - linux-firmware-ti
+
   - type: systemd
     system:
       enabled:
@@ -67,3 +68,12 @@ modules:
         - tailscaled.service
       disabled:
         - NetworkManager-wait-online.service
+
+  - type: default-flatpaks
+    configurations:
+      - notify: true # Send notification after install/uninstall is finished (true/false)
+        scope: system
+        # If no repo information is specified, Flathub will be used by default
+        install: # system flatpaks we want all users to have and not remove
+          - com.github.tchx84.Flatseal
+      - scope: user # Also add Flathub user repo, but no user packages
