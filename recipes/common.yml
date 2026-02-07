@@ -7,10 +7,10 @@ modules:
       nonfree: rpmfusion
       files:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
-        - https://repo.vivaldi.com/archive/vivaldi-fedora.repo
+        #- https://repo.vivaldi.com/archive/vivaldi-fedora.repo
         - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
       keys:
-        - https://repo.vivaldi.com/archive/linux_signing_key.pub
+        #- https://repo.vivaldi.com/archive/linux_signing_key.pub
         - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
       copr:
         - atim/starship
@@ -24,13 +24,13 @@ modules:
         - system76-scheduler
         - gamemode
         # Browsers
-        - liberation-fonts-common # required by Vivaldi due to packaging issues
-        - liberation-sans-fonts
-        - liberation-serif-fonts
-        - liberation-mono-fonts
-        - repo: vivaldi
-          packages:
-            - vivaldi-stable
+        #- liberation-fonts-common # required by Vivaldi due to packaging issues
+        #- liberation-sans-fonts
+        #- liberation-serif-fonts
+        #- liberation-mono-fonts
+        #- repo: vivaldi
+        #  packages:
+        #    - vivaldi-stable
         - repo: brave-browser
           packages:
             - brave-browser
