@@ -1,14 +1,14 @@
-- type: dnf # steam installation
-  repos:
-    cleanup: true
-    install-weak-deps: false
-    allow-erasing: true
-    files:
-      - https://negativo17.org/repos/fedora-steam.repo
-  install:
-    packages:
-      - steam
-      - kernel-modules-extra
-  group-install:
-    packages:
-      - virtualization
+type: dnf # steam installation
+repos:
+  cleanup: true
+  install-weak-deps: false
+  allow-erasing: true
+  files:
+    - https://negativo17.org/repos/fedora-steam.repo
+install:
+  packages:
+    - steam
+    - kernel-modules-extra
+group-install:
+  packages:
+    - virtualization
