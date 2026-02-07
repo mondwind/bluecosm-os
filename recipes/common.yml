@@ -1,4 +1,5 @@
 ---
+
 modules:
   - type: dnf
     repos:
@@ -15,46 +16,45 @@ modules:
         - atim/starship
         - che/zed
         - kylegospo/system76-scheduler
-      install:
-        packages:
-          # Gaming
-          - gamescope
-          - mangohud
-          - system76-scheduler
-          - gamemode
-          # Browsers
-          - liberation-fonts-common # required by Vivaldi due to packaging issues
-          - liberation-sans-fonts
-          - liberation-serif-fonts
-          - liberation-mono-fonts
-          - repo: vivaldi
-            packages:
-              - vivaldi-stable
-          - repo: brave-browser
-            packages:
-              - brave-browser
-          # Dev
-          - ptyxis
-          - tailscale
-          - zed
-          - micro
-          - starship
-          - alacritty
-          # Virt
-          - edk2-ovmf
-          - swtpm
-          - virt-manager
-      remove:
-        packages:
-          - firefox
-          - firefox-langpacks
-          - linux-firmware-intel
-          - linux-firmware-broadcom
-          - linux-firmware-mediatek
-          - linux-firmware-mellanox
-          - linux-firmware-nxp
-          - linux-firmware-qlogic
-          - linux-firmware-ti
+    install:
+      packages:
+        # Gaming
+        - gamescope
+        - mangohud
+        - system76-scheduler
+        - gamemode
+        # Browsers
+        - liberation-fonts-common # required by Vivaldi due to packaging issues
+        - liberation-sans-fonts
+        - liberation-serif-fonts
+        - liberation-mono-fonts
+        - repo: vivaldi
+          packages:
+            - vivaldi-stable
+        - repo: brave-browser
+          packages:
+            - brave-browser
+        # Dev
+        - ptyxis
+        - tailscale
+        - zed
+        - micro
+        - starship
+        - alacritty
+        # Virt
+        - edk2-ovmf
+        - swtpm
+        - virt-manager
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
+        - linux-firmware-broadcom
+        - linux-firmware-mediatek
+        - linux-firmware-mellanox
+        - linux-firmware-nxp
+        - linux-firmware-qlogic
+        - linux-firmware-ti
 
   - type: systemd
     system:
