@@ -1,3 +1,4 @@
+---
 type: dnf # steam installation
 repos:
   cleanup: true
