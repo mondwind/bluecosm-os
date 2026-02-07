@@ -6,7 +6,7 @@ name: bluecosm-os
 description: This is my personal OS image with the Cosmic Desktop.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/blue-build/base-images/fedora-cosmic
+base-image: ghcr.io/ublue-os/base-main
 image-version: latest
 
 # module configuration, executed in order
@@ -25,7 +25,8 @@ modules:
     install:
       packages:
         - steam
-        - kernel-modules-extra # might be removable
+        - kernel-modules-extra
+        - ffmpeg
       install-weak-deps: false
       allow-erasing: true
 
@@ -41,25 +42,23 @@ modules:
         - https://repo.vivaldi.com/stable/linux_signing_key.pub
         - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
       copr:
+        - ryanabx/cosmic-epoch # Cosmic Desktop packages
         - atim/starship
         - che/zed
         - kylegospo/system76-scheduler
     install:
       packages:
-        # Gaming Stack
+        # Everything gaming
         - gamescope
         - mangohud
         - system76-scheduler
         - gamemode
 
-        # Browsers Stack
-        - repo: vivaldi-fedora
-          packages:
-            - vivaldi-stable
-        - repo: brave-browser
-          packages:
-            - brave-browser
-        # Dev Stack
+        # Desktop environment
+        - cosmic-desktop
+        - vivaldi-stable
+        - brave-browser
+        # Devtools
         - ptyxis
         - tailscale
         - zed
@@ -67,15 +66,18 @@ modules:
         - starship
         - alacritty
 
-        # Intel Stack
+        # Intel graphics support
         - intel-gpu-tools
-        - intel-level-zero
-        - intel-compute-runtime
-
-        # Virt Stack
+        - libva-utils
+        - libva-intel-media-driver
+        # Virtualization support for Windows guests
         - edk2-ovmf
         - swtpm
         - virt-manager
+
+        # LLM requirements
+        - intel-level-zero
+        - intel-compute-runtime
 
     group-install:
       packages:
