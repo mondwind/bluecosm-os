@@ -54,7 +54,7 @@ modules:
         - gamemode
 
         # Browsers Stack
-        - repo: vivaldi-fedora
+        - repo: vivaldi
           packages:
             - vivaldi-stable
         - repo: brave-browser
