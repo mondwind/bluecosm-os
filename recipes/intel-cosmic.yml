@@ -32,7 +32,7 @@ modules:
 
   - type: dnf # general packages
     repos:
-      cleanup: false
+      cleanup: true
       nonfree: rpmfusion # enable RPM Fusion repositories (required for Steam, etc.)
       files:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
