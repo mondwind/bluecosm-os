@@ -11,6 +11,3 @@ install:
     - kernel-modules-extra
   install-weak-deps: false
   allow-erasing: true
-group-install:
-  packages:
-    - virtualization

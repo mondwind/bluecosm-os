@@ -55,6 +55,9 @@ modules:
         - linux-firmware-nxp
         - linux-firmware-qlogic
         - linux-firmware-ti
+    group-install:
+      packages:
+        - virtualization
 
   - type: systemd
     system:
