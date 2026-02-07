@@ -63,26 +63,24 @@ modules:
         - vivaldi-stable
         - brave-browser
 
+        # Devtools
+        - ptyxis
+        - tailscale
+        - alacritty
+        - micro
+        - starship
+        - zed
+
         # AMD ryzen support
         - amd-ucode-firmware
         - lm_sensors
         - kernel-tools
-
-        # Devtools
-        - ptyxis 
-        - tailscale
-
-        # CLI tools
-        - micro
-        - starship
 
         # Virtualization support for Windows guest
         - edk2-ovmf
         - swtpm
         - virt-manager
 
-        # Zed editor (RPM to avoid flatpak limitations)
-        - zed
     group-install:
       packages:
         - virtualization
@@ -107,6 +105,8 @@ modules:
   - type: brew
     nofile-limits: true
     brew-analytics: false
+    auto-update: true
+    auto-upgrade: true
 
   - type: systemd
     system:
@@ -117,7 +117,7 @@ modules:
         - virtnetworkd.socket
         - virtproxyd.socket
 
-        - com.system76.Scheduler.service 
+        - com.system76.Scheduler.service
         - tailscaled.service
 
         - nvidia-persistenced.service # Keep NVIDIA driver loaded

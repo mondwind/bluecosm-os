@@ -61,10 +61,10 @@ modules:
         # Devtools
         - ptyxis
         - tailscale
-
-        # CLI tools
+        - zed
         - micro
         - starship
+        - alacritty
 
         # Intel graphics support
         - intel-gpu-tools
@@ -79,8 +79,6 @@ modules:
         - intel-level-zero
         - intel-compute-runtime
 
-        # Zed editor (RPM to avoid flatpak limitations)
-        - zed
     group-install:
       packages:
         - virtualization
@@ -95,9 +93,6 @@ modules:
         - linux-firmware-nxp
         - linux-firmware-qlogic
         - linux-firmware-ti
-
-  - type: brew
-    nofile-limits: true
 
   - type: systemd
     system:
@@ -116,6 +111,8 @@ modules:
   - type: brew
     nofile-limits: true
     brew-analytics: false
+    auto-update: true
+    auto-upgrade: true
 
   - type: default-flatpaks
     configurations:
