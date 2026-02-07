@@ -10,5 +10,5 @@
       - steam
       - kernel-modules-extra
   group-install:
-      packages:
-        - virtualization
+    packages:
+      - virtualization

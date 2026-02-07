@@ -1,3 +1,0 @@
-[default_session]
-command = "tuigreet --time --remember --cmd niri-session"
-user = "greeter"
