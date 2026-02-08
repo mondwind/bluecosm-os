@@ -64,6 +64,12 @@ modules:
       disabled:
         - NetworkManager-wait-online.service
 
+  - type: brew
+    nofile-limits: true
+    brew-analytics: false
+    auto-update: true
+    auto-upgrade: true
+
   - type: default-flatpaks
     configurations:
       - notify: true # Send notification after install/uninstall is finished (true/false)
