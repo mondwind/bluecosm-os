@@ -1,0 +1,17 @@
+---
+modules:
+  - type: akmods
+    install: []
+    nvidia-driver: nvidia-open
+  - type: kargs
+    kargs:
+      - amd_pstate=active
+      - nvidia-drm.modeset=1
+      - nvidia.NVreg_PreserveVideoMemoryAllocations=1
+  - type: systemd
+    system:
+      enabled:
+        - nvidia-persistenced.service
+        - nvidia-suspend.service
+        - nvidia-resume.service
+        - nvidia-hibernate.service
