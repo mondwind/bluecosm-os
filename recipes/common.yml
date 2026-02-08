@@ -1,5 +1,4 @@
 ---
-
 modules:
   - type: dnf
     repos:
@@ -8,8 +7,10 @@ modules:
       files:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
         - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        - https://repo.vivaldi.com/stable/vivaldi-fedora.repo
       keys:
         - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+        - https://repo.vivaldi.com/stable/linux_signing_key.pub
       copr:
         - atim/starship
         - che/zed
@@ -22,9 +23,8 @@ modules:
         - system76-scheduler
         - gamemode
         # Browsers
-        - repo: brave-browser
-          packages:
-            - brave-browser
+        - brave-browser
+        - vivaldi-stable
         # Dev
         - ptyxis
         - tailscale
