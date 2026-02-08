@@ -6,7 +6,7 @@ name: bluecosm-nv-os
 description: This is my personal OS image with the Cosmic Desktop.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/base-main
+base-image: ghcr.io/blue-build/base-images/fedora-cosmic-nvidia
 image-version: latest
 
 # module configuration, executed in order
@@ -17,123 +17,17 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  - type: dnf # steam installation
-    repos:
-      cleanup: true
-      files:
-        - https://negativo17.org/repos/fedora-steam.repo
-    install:
-      packages:
-        - steam
-        - kernel-modules-extra
-        - ffmpeg
-      install-weak-deps: false
-      allow-erasing: true
-
-  - type: akmods
-    install: []
-    nvidia-driver: nvidia-open
+  - from-file: steam.yml
+  - from-file: common.yml
 
   - type: dnf # general packages including NVIDIA drivers
     repos:
       cleanup: true
-      nonfree: rpmfusion # enable RPM Fusion repositories (required for Steam, etc.)
-      files:
-        - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
-        - https://repo.vivaldi.com/stable/vivaldi-fedora.repo
-        - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-      keys:
-        - https://repo.vivaldi.com/stable/linux_signing_key.pub
-        - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-      copr:
-        - ryanabx/cosmic-epoch # Cosmic Desktop packages
-        - atim/starship
-        - che/zed
-        - kylegospo/system76-scheduler
     install:
       packages:
-        # Everything gaming
-        - gamescope
-        - mangohud
-        - system76-scheduler
-        - gamemode
-
-        # Desktop environment
-        - cosmic-desktop
-        - vivaldi-stable
-        - brave-browser
-
-        # Devtools
-        - ptyxis
-        - tailscale
-        - alacritty
-        - micro
-        - starship
-        - zed
-
         # AMD ryzen support
         - amd-ucode-firmware
         - lm_sensors
         - kernel-tools
-
-        # Virtualization support for Windows guest
-        - edk2-ovmf
-        - swtpm
-        - virt-manager
-
-    group-install:
-      packages:
-        - virtualization
-    remove:
-      packages:
-        - firefox
-        - firefox-langpacks
-        - linux-firmware-intel
-        - linux-firmware-broadcom
-        - linux-firmware-mediatek
-        - linux-firmware-mellanox
-        - linux-firmware-nxp
-        - linux-firmware-qlogic
-        - linux-firmware-ti
-
-  - type: kargs
-    kargs:
-      - amd_pstate=active # Enable AMD P-state control
-      - nvidia-drm.modeset=1 # Enable NVIDIA DRM kernel mode setting
-      - nvidia.NVreg_PreserveVideoMemoryAllocations=1 # Preserve video memory allocations
-
-  - type: brew
-    nofile-limits: true
-    brew-analytics: false
-    auto-update: true
-    auto-upgrade: true
-
-  - type: systemd
-    system:
-      enabled:
-        # virt service split up into daemons
-        - libvirtd.socket
-        - virtqemud.socket
-        - virtnetworkd.socket
-        - virtproxyd.socket
-
-        - com.system76.Scheduler.service
-        - tailscaled.service
-
-        - nvidia-persistenced.service # Keep NVIDIA driver loaded
-        - nvidia-suspend.service # Suspend NVIDIA driver
-        - nvidia-resume.service # Resume NVIDIA driver
-        - nvidia-hibernate.service # Hibernate NVIDIA driver
-      disabled:
-        - NetworkManager-wait-online.service # Shorten boottime, maybe relevant for autostart VPN/VM
-
-  - type: default-flatpaks
-    configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
-        scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
-          - com.github.tchx84.Flatseal
-      - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
