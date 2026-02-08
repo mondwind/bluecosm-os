@@ -64,6 +64,11 @@ modules:
       disabled:
         - NetworkManager-wait-online.service
 
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - JetBrainsMono
+
   - type: brew
     nofile-limits: true
     brew-analytics: false
