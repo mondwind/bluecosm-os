@@ -31,6 +31,7 @@ modules:
         - zed
         - micro
         - starship
+        - lsd
         # Virt
         - edk2-ovmf
         - swtpm
