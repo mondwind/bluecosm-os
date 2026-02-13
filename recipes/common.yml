@@ -43,6 +43,8 @@ modules:
         - edk2-ovmf
         - swtpm
         - virt-manager
+        # Fonts
+        - rsms-inter-fonts
     remove:
       packages:
         - firefox
@@ -78,7 +80,6 @@ modules:
         - Hack
         - FiraCode
       google-fonts:
-        - Inter
         - Roboto
         - Open Sans
         - Geist
