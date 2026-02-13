@@ -32,6 +32,10 @@ modules:
         - micro
         - starship
         - lsd
+        - kitty
+        - fd
+        - yazi
+        - zellij
 
         # Utils
         - ripgrep
