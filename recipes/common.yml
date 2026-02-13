@@ -32,6 +32,13 @@ modules:
         - micro
         - starship
         - lsd
+        - kitty
+        - fd
+        - yazi
+        - zellij
+        # Utils
+        - ripgrep
+        - http://cdn.filen.io/@filen/desktop/release/latest/Filen_linux_x86_64.rpm
         # Virt
         - edk2-ovmf
         - swtpm
@@ -68,6 +75,14 @@ modules:
     fonts:
       nerd-fonts:
         - JetBrainsMono
+        - Hack
+        - FiraCode
+      google-fonts:
+        - Inter
+        - Roboto
+        - Open Sans
+        - Geist
+        - Geist Mono
 
   - type: brew
     nofile-limits: true
