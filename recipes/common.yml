@@ -32,10 +32,7 @@ modules:
         - micro
         - starship
         - lsd
-        - kitty
-        - fd
-        - yazi
-        - zellij
+
         # Utils
         - ripgrep
         - http://cdn.filen.io/@filen/desktop/release/latest/Filen_linux_x86_64.rpm
