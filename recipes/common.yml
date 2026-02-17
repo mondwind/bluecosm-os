@@ -54,7 +54,7 @@ modules:
         - btop
         - bat
         - bottom
-        - dysk
+        #- dysk
         - ouch
         - zoxide
 
