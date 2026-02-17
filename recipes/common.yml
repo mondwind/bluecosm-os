@@ -17,9 +17,10 @@ modules:
         - atim/starship
         - che/zed
         - kylegospo/system76-scheduler
-        - lihaohong/yazi
+        - lihaohong/yazi # includes ouch and zk
         - varlad/zellij
         - lilay/tealdeer
+        - atim/bottom
     install:
       packages:
         # Gaming
@@ -31,7 +32,6 @@ modules:
         - brave-browser
         - vivaldi-stable
         # Dev
-        - ptyxis
         - tailscale
         - zed
         - micro
@@ -43,6 +43,7 @@ modules:
         - zellij
         - warp-terminal
         - lazygit
+        - difftastic
 
         # Utils
         - ripgrep
@@ -51,6 +52,11 @@ modules:
           packages:
             - tealdeer
         - btop
+        - bat
+        - bottom
+        - dysk
+        - ouch
+        - zoxide
 
         # Virt
         - edk2-ovmf
