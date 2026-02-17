@@ -17,7 +17,7 @@ modules:
         - atim/starship
         - che/zed
         - kylegospo/system76-scheduler
-        - lihaohong/yazi # includes ouch and zk
+        - lihaohong/yazi
         - varlad/zellij
         - lilay/tealdeer
         - atim/bottom
@@ -27,7 +27,7 @@ modules:
         - gamescope
         - mangohud
         - system76-scheduler
-        - gamemode
+        #- gamemode # already in base
         # Browsers
         - brave-browser
         - vivaldi-stable
@@ -38,11 +38,10 @@ modules:
         - starship
         - lsd
         - kitty
-        - fd
+        #- fd # already in base
         - yazi
         - zellij
         - warp-terminal
-        - lazygit
         - difftastic
 
         # Utils
@@ -55,13 +54,14 @@ modules:
         - bat
         - bottom
         #- dysk
-        - ouch
+        #- ouch
+        #- lazygit
         - zoxide
 
         # Virt
-        - edk2-ovmf
-        - swtpm
-        - virt-manager
+        #- edk2-ovmf # already in base
+        #- swtpm # already in base
+        #- virt-manager # already in base
         # Fonts
         - rsms-inter-fonts
     remove:

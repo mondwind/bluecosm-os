@@ -8,7 +8,7 @@ modules:
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
         - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
         - https://repo.vivaldi.com/stable/vivaldi-fedora.repo
-        - https://releases.warp.dev/linux/keys/warp.repo
+        - warpdotdev.repo
       keys:
         - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         - https://repo.vivaldi.com/stable/linux_signing_key.pub
@@ -23,7 +23,7 @@ modules:
         - gamescope
         - mangohud
         - system76-scheduler
-        - gamemode
+        #- gamemode # already in base
         # Browsers (not in Origami)
         - brave-browser
         - vivaldi-stable
@@ -32,18 +32,18 @@ modules:
         - zed
         - lsd
         - kitty
-        - fd
+        #- fd # already in base
         - warp-terminal
         - difftastic
         # Utils (not in Origami)
         - http://cdn.filen.io/@filen/desktop/release/latest/Filen_linux_x86_64.rpm
         - bottom
-        - dysk
-        - ouch
+        #- dysk # brew only
+        #- ouch # brew only
         # Virt (not in Origami)
-        - edk2-ovmf
-        - swtpm
-        - virt-manager
+        #- edk2-ovmf # already in base
+        #- swtpm # already in base
+        #- virt-manager # already in base
     remove:
       packages:
         - linux-firmware-broadcom
