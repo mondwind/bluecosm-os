@@ -14,54 +14,38 @@ modules:
         - https://repo.vivaldi.com/stable/linux_signing_key.pub
         - https://releases.warp.dev/linux/keys/warp.asc
       copr:
-        - atim/starship
         - che/zed
         - kylegospo/system76-scheduler
-        - lihaohong/yazi
-        - varlad/zellij
-        - lilay/tealdeer
+        - atim/bottom
     install:
       packages:
-        # Gaming
+        # Gaming (not in Origami)
         - gamescope
         - mangohud
         - system76-scheduler
         - gamemode
-        # Browsers
+        # Browsers (not in Origami)
         - brave-browser
         - vivaldi-stable
-        # Dev
-        - ptyxis
+        # Dev tools (not in Origami)
         - tailscale
         - zed
-        - micro
-        - starship
         - lsd
         - kitty
         - fd
-        - yazi
-        - zellij
         - warp-terminal
-        - lazygit
-
-        # Utils
-        - ripgrep
+        - difftastic
+        # Utils (not in Origami)
         - http://cdn.filen.io/@filen/desktop/release/latest/Filen_linux_x86_64.rpm
-        - repo: copr:copr.fedorainfracloud.org:lilay:tealdeer
-          packages:
-            - tealdeer
-        - btop
-
-        # Virt
+        - bottom
+        - dysk
+        - ouch
+        # Virt (not in Origami)
         - edk2-ovmf
         - swtpm
         - virt-manager
-        # Fonts
-        - rsms-inter-fonts
     remove:
       packages:
-        - firefox
-        - firefox-langpacks
         - linux-firmware-broadcom
         - linux-firmware-mediatek
         - linux-firmware-mellanox
@@ -75,21 +59,16 @@ modules:
   - type: systemd
     system:
       enabled:
-        # virt service split up into daemons
         - libvirtd.socket
         - virtqemud.socket
         - virtnetworkd.socket
         - virtproxyd.socket
-
         - com.system76.Scheduler.service
         - tailscaled.service
-      disabled:
-        - NetworkManager-wait-online.service
 
   - type: fonts
     fonts:
       nerd-fonts:
-        - JetBrainsMono
         - Hack
         - FiraCode
       google-fonts:
@@ -106,14 +85,7 @@ modules:
 
   - type: default-flatpaks
     configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
+      - notify: true
         scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
+        install:
           - com.github.tchx84.Flatseal
-      - notify: false
-        scope: user
-        repo:
-          name: cosmic
-          title: COSMIC
-          url: https://apt.pop-os.org/cosmic/cosmic.flatpakrepo
