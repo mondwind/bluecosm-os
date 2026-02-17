@@ -57,6 +57,7 @@ modules:
         #- ouch
         #- lazygit
         - zoxide
+        - arm-image-installer
 
         # Virt
         #- edk2-ovmf # already in base
