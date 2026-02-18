@@ -1,49 +1,50 @@
----
 modules:
   - type: dnf
     repos:
       cleanup: true
       nonfree: rpmfusion
       files:
+        # Standard Repos
         - https://pkgs.tailscale.com/stable/fedora/tailscale.repo
         - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
         - https://repo.vivaldi.com/stable/vivaldi-fedora.repo
+        # Warp (Ensure this local file is valid, or use a direct URL if available)
         - warpdotdev.repo
+
+        # COPR Repos (Manually pinned to Fedora 43 to fix "Chroot not found")
+        - https://copr.fedorainfracloud.org/coprs/che/zed/repo/fedora-43/che-zed-fedora-43.repo
+        - https://copr.fedorainfracloud.org/coprs/kylegospo/system76-scheduler/repo/fedora-43/kylegospo-system76-scheduler-fedora-43.repo
+        - https://copr.fedorainfracloud.org/coprs/atim/bottom/repo/fedora-43/atim-bottom-fedora-43.repo
+
       keys:
         - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         - https://repo.vivaldi.com/stable/linux_signing_key.pub
         - https://releases.warp.dev/linux/keys/warp.asc
-      copr:
-        - che/zed
-        - kylegospo/system76-scheduler
-        - atim/bottom
+
+    # REMOVED: copr: [...] section (Replaced by manual files above)
+
     install:
       packages:
-        # Gaming (not in Origami)
+        # Gaming
         - gamescope
         - mangohud
         - system76-scheduler
-        #- gamemode # already in base
-        # Browsers (not in Origami)
+        # Browsers
         - brave-browser
         - vivaldi-stable
-        # Dev tools (not in Origami)
+        # Dev tools
         - tailscale
         - zed
         - lsd
         - kitty
-        #- fd # already in base
         - warp-terminal
         - difftastic
-        # Utils (not in Origami)
-        - http://cdn.filen.io/@filen/desktop/release/latest/Filen_linux_x86_64.rpm
+        # Utils
         - bottom
-        #- dysk # brew only
-        #- ouch # brew only
-        # Virt (not in Origami)
-        #- edk2-ovmf # already in base
-        #- swtpm # already in base
-        #- virt-manager # already in base
+        # Direct RPM URLs should be handled carefully; dnf module supports them but
+        # sometimes it's safer to download them in a separate 'files' module step if they fail here.
+        - http://cdn.filen.io/@filen/desktop/release/latest/Filen_linux_x86_64.rpm
+
     remove:
       packages:
         - linux-firmware-broadcom
@@ -52,40 +53,7 @@ modules:
         - linux-firmware-nxp
         - linux-firmware-qlogic
         - linux-firmware-ti
+
     group-install:
       packages:
         - virtualization
-
-  - type: systemd
-    system:
-      enabled:
-        - libvirtd.socket
-        - virtqemud.socket
-        - virtnetworkd.socket
-        - virtproxyd.socket
-        - com.system76.Scheduler.service
-        - tailscaled.service
-
-  - type: fonts
-    fonts:
-      nerd-fonts:
-        - Hack
-        - FiraCode
-      google-fonts:
-        - Roboto
-        - Open Sans
-        - Geist
-        - Geist Mono
-
-  - type: brew
-    nofile-limits: true
-    brew-analytics: false
-    auto-update: true
-    auto-upgrade: true
-
-  - type: default-flatpaks
-    configurations:
-      - notify: true
-        scope: system
-        install:
-          - com.github.tchx84.Flatseal
