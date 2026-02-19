@@ -7,6 +7,5 @@ repos:
 install:
   packages:
     - steam
-    - kernel-modules-extra
   install-weak-deps: false
   allow-erasing: true
