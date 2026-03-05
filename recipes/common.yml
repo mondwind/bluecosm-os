@@ -9,7 +9,6 @@ modules:
         - https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
         - https://repo.vivaldi.com/stable/vivaldi-fedora.repo
         - warpdotdev.repo
-        - https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo
       keys:
         - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         - https://repo.vivaldi.com/stable/linux_signing_key.pub
@@ -66,9 +65,6 @@ modules:
         #- virt-manager # already in base
         # Fonts
         - rsms-inter-fonts
-
-        # locallm
-        - ramalama
 
     remove:
       packages:

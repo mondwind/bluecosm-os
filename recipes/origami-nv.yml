@@ -22,6 +22,8 @@ modules:
 
   - type: dnf # general packages including NVIDIA drivers
     repos:
+      files:
+        - https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo
       cleanup: true
     install:
       packages:
@@ -29,5 +31,7 @@ modules:
         - amd-ucode-firmware
         - lm_sensors
         - kernel-tools
+        - nvidia-container-toolkit
+        - ramalama
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
