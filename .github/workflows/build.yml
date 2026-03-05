@@ -27,7 +27,6 @@ jobs:
       matrix:
         recipe:
           # !! Add your recipes here
-          - nvidia-amd-cosmic.yml
           - intel-cosmic.yml
           - origami-nv.yml
     steps:
