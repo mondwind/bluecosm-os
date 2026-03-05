@@ -83,8 +83,6 @@ modules:
   - type: brew
     nofile-limits: true
     brew-analytics: false
-    auto-update: true
-    auto-upgrade: true
 
   - type: systemd
     system:
