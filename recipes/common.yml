@@ -95,8 +95,6 @@ modules:
 
         - com.system76.Scheduler.service
         - tailscaled.service
-        - nvidia-cdi-refresh.path
-        - nvidia-cdi-refresh.service
       disabled:
         - NetworkManager-wait-online.service
 
