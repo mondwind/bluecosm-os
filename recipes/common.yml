@@ -80,6 +80,12 @@ modules:
       packages:
         - virtualization
 
+  - type: brew
+    nofile-limits: true
+    brew-analytics: false
+    auto-update: true
+    auto-upgrade: true
+
   - type: systemd
     system:
       enabled:
@@ -105,12 +111,6 @@ modules:
         - Open Sans
         - Geist
         - Geist Mono
-
-  - type: brew
-    nofile-limits: true
-    brew-analytics: false
-    auto-update: true
-    auto-upgrade: true
 
   - type: default-flatpaks
     configurations:
