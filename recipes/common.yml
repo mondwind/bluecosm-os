@@ -80,10 +80,6 @@ modules:
       packages:
         - virtualization
 
-  - type: brew
-    nofile-limits: true
-    brew-analytics: false
-
   - type: systemd
     system:
       enabled:
