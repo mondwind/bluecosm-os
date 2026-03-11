@@ -14,7 +14,6 @@ modules:
         - https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
         - https://repo.vivaldi.com/stable/linux_signing_key.pub
         - https://releases.warp.dev/linux/keys/warp.asc
-        - https://repos.fyralabs.com/terra$releasever/key.asc
       copr:
         - atim/starship
         - che/zed
