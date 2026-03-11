@@ -6,7 +6,7 @@ name: bluecosm-nv-os
 description: This is my personal OS image with the Cosmic Desktop.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/blue-build/base-images/fedora-cosmic-nvidia
+base-image: ghcr.io/zirconium-dev/zirconium-nvidia:latest
 image-version: latest
 
 # module configuration, executed in order
@@ -17,7 +17,7 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  - from-file: steam.yml
+  #  - from-file: steam.yml
   - from-file: common.yml
 
   - type: dnf # general packages including NVIDIA drivers
