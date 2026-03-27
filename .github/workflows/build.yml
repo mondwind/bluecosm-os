@@ -27,7 +27,6 @@ jobs:
       matrix:
         recipe:
           # !! Add your recipes here
-          - intel-cosmic.yml
           - origami-nv.yml
     steps:
       # the build is fully handled by the reusable github action
