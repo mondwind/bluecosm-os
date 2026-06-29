@@ -6,7 +6,7 @@ name: bluecosm-nv-os
 description: This is my personal OS image with the Cosmic Desktop.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/zirconium-dev/zirconium-nvidia:latest
+base-image: ghcr.io/blue-build/base-images/fedora-cosmic-nvidia
 image-version: latest
 
 # module configuration, executed in order
